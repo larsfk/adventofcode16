@@ -2,12 +2,10 @@ import numpy as np
 
 def find_possible_verticals(columns):
     valid_triangles = 0
+    print columns
     for i in range(2,len(columns),3):
-        if columns[i] < 100 and columns[i-1] < 100 and columns[i-2] < 100:
+        if (columns[i-2] + columns[i-1] > columns[i]) and (columns[i-1] + columns[i] > columns[i-2]) and (columns[i-2] + columns[i] > columns[i-1]):
             valid_triangles += 1
-        elif (len(str(columns[i])) == len(str(columns[i-1]))) and (len(str(columns[i]))) == len(str(columns[i-2])):
-            if(str(columns[i])[0] == str(columns[i-1])[0]) and (str(columns[i])[0] == str(columns[i-2])[0]):
-                valid_triangles += 1
     print valid_triangles
 
 def main():

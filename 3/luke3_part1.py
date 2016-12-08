@@ -2,8 +2,6 @@
 def find_valid_triangles(triangles):
     valid_triangles = []
     for triangle in triangles:
-        longest_side = max(triangle)
-        print longest_side
         if (triangle[0] + triangle[1] > triangle[2]) and (triangle[1] + triangle[2] > triangle[0]) and (triangle[0] + triangle[2] > triangle[1]):
             valid_triangles.append(triangle)
     return len(valid_triangles)
