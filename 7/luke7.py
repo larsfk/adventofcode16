@@ -1,11 +1,11 @@
 IPS = 0
 SSLs = 0
 
-def findIPs(liste):
+def findIPs(ip):
     global IPS
     abba = 0
-    for i in range(len(liste)):
-        if isAbba(liste[i]):
+    for i in range(len(ip)):
+        if isAbba(ip[i]):
             if i % 2 != 0:
                 abba = 0
                 break
@@ -13,15 +13,15 @@ def findIPs(liste):
                 abba += 1
     IPS += abba
 
-def findSSL(liste):
+def findSSL(ip):
     global SSLs
     supernet = []
     hypernet = []
-    for i in range(len(liste)):
+    for i in range(len(ip)):
         if i % 2 == 0:
-            supernet.extend(returnSSL(liste[i]))
+            supernet.extend(returnSSL(ip[i]))
         else:
-            hypernet.extend(returnSSL(liste[i]))
+            hypernet.extend(returnSSL(ip[i]))
     #print "s", supernet, "h", hypernet
 
     if len(hypernet) > 0 and len(supernet) > 0:
@@ -47,17 +47,13 @@ def isAbba(s):
     return False
 
 
-def lineToList(line):
-    line.strip()
-    liste = line.replace("["," ").replace("]"," ").split()
-    findSSL(liste)
-
 def main():
     f = open("input.py")
-    data = f.readlines()
+    data_from_file = f.readlines()
     f.close()
-    for line in data:
-        lineToList(line)
+    for line in data_from_file:
+        line.strip()
+        findSSL(line.replace("["," ").replace("]"," ").split())
     print "IP:", IPS
     print "SSL:",SSLs
 
