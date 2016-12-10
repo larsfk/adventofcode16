@@ -19,9 +19,9 @@ def findSSL(ip):
     hypernet = []
     for i in range(len(ip)):
         if i % 2 == 0:
-            supernet.extend(returnSSL(ip[i]))
+            supernet.extend(returnBAB(ip[i]))
         else:
-            hypernet.extend(returnSSL(ip[i]))
+            hypernet.extend(returnBAB(ip[i]))
     #print "s", supernet, "h", hypernet
 
     if len(hypernet) > 0 and len(supernet) > 0:
@@ -33,7 +33,7 @@ def findSSL(ip):
 
                 
 
-def returnSSL(s):
+def returnBAB(s):
     bab = []
     for p in zip(s[:-2], s[1:-1], s[2:]):
         if p[0] == p[-1] and p[0] != p[1]:
